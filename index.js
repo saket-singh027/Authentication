@@ -113,6 +113,42 @@ async function getData(req, res) {
   }
 }
 
+async function updatePut(req, res) {
+  const id = req.params.id;
+  const body = req.body;
+  try {
+    const updatedData = await URL.findOneAndUpdate({ id: id }, body, {
+      new: true,
+      runValidators: true,
+    });
+    if (updatedData) {
+      res.status(200).json(updatedData);
+    } else {
+      res.status(404).json({ msg: "Data not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+}
+
+async function updatePatch(req, res) {
+  const id = req.params.id;
+  const body = req.body;
+  try {
+    const updatedData = await URL.findOneAndUpdate({ id: id }, body, {
+      new: true,
+      runValidators: true,
+    });
+    if (updatedData) {
+      res.status(200).json(updatedData);
+    } else {
+      res.status(404).json({ msg: "Data not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+}
+
 schema.methods.comparePass = async function (candidatePassword) {
   try {
     console.log("Comparing password:", candidatePassword, this.password); // Debugging

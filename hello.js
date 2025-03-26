@@ -174,8 +174,7 @@ app.get("/data", passport.authenticate("basic", { session: false }), getData);
 
 app.delete("/delete/:id", del);
 
-// app.put("/update/:id", updatePut);
-
-// app.patch("/update/:id", updatePatch);
+app.put("/update/:id", updatePut);
+app.patch("/update/:id", updatePatch);
 
 app.listen(4001, console.log("server is listening"));
